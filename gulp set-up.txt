@@ -1,0 +1,43 @@
+npm install -g gulp
+npm install --save-dev gulp
+
+for watching 
+gulp. watch method
+
+removing spacing in yourscss or js pluging manifying the codes
+npm install --save-dev gulp-uglify
+
+watch function '**/*.js'
+
+to convert scss to cs css using plugins called gulp-ruby-sass
+$ npm install --save-dev gulp-ruby-sass in cas i doesn't works
+npm install gulp-sass 
+
+preventing gulp to stop if error occurs 
+ npm install --save-dev gulp-plumber
+
+
+var gulp = require('gulp');
+var uglify = require('gulp-uglify');
+var sass = require('gulp-sass');
+
+gulp.task('styles', function(){
+	gulp.src('scss/*.scss')
+	.pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+	.pipe(gulp.dest('css/app.css'));
+});﻿
+
+gulp.task('scripts', function(){
+	gulp.src('js/*.js')
+	.pipe(uglify())
+	.pipe(gulp.dest('frontend-js/'));
+});
+
+gulp.task('watch', function(){
+	gulp.watch('js/*.js', ['scripts']);
+	gulp.watch('scss/*.scss', ['styles']);
+});
+
+gulp.task('default', ['scripts', 'styles', 'watch']);
+
+
